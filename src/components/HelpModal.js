@@ -6,8 +6,9 @@ import houses from '../images/houses.png'
 import services from '../images/services.png'
 import recommend from '../images/recommend.png'
 import recommendButton from '../images/recommendButton.png'
+import bugs from '../images/bugs.gif'
 
-const HelpModal = ({closeHelpModal}) => {
+const HelpModal = ({ closeHelpModal }) => {
     return (
         <div className='fixed top-0 left-0 h-screen w-screen z-10 bg-[#0000006b] flex justify-center backdrop-blur-lg overflow-auto'>
             <div className='relative max-w-2xl w-full h-fit my-10 mx-2 p-5 bg-slate-900 text-gray-400'>
@@ -19,6 +20,7 @@ const HelpModal = ({closeHelpModal}) => {
                 </div>
                 <h1 className='text-center font-bold text-3xl'>How to use?</h1>
                 <div className='my-3 py-[1px] bg-slate-800 w'></div>
+                <p className='py-4 text-center font-medium'>(Used Manhattan distance formula for calculating distance.)</p>
                 <ol type='1'>
                     <li className='py-4'>
                         <p>1. Use this button to create new plot.</p>
@@ -29,7 +31,7 @@ const HelpModal = ({closeHelpModal}) => {
                         <img className='w-48' src={houseAndServices} alt="houses and services buttons" srcset="" />
                     </li>
                     <li className='py-4'>
-                        <p>3. After adding houses this how they'll look with their respective house number.</p>
+                        <p>3. After adding houses this is how they'll look with their respective house number.</p>
                         <img src={houses} alt="houses on plot" />
                     </li>
                     <li className='py-4'>
@@ -41,11 +43,12 @@ const HelpModal = ({closeHelpModal}) => {
                         <img className='w-48' src={recommendButton} alt="recommend button" />
                     </li>
                     <li className='py-4'>
-                        <p>6. All recommend house will turn into green and when you hover on it'll show nearest distance to each available services.</p>
+                        <p>6. All recommended houses will turn into green and when you hover, it'll show nearest distance to each available services.</p>
                         <img src={recommend} alt="recommended houses" />
                     </li>
                 </ol>
-                <p className='text-center'>*there might be some bugs 😅</p>
+                <img className='mx-auto' src={bugs} alt="gif" />
+                <p className='py-2 text-center'>Working on edge cases and fixing bugs...</p>
             </div>
         </div>
     )
