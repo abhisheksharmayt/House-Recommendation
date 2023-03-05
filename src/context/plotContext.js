@@ -27,15 +27,26 @@ const PlotProvider = ({ children }) => {
         num += 1;
     }
 
+    //calculating score for each house using manhattan distance formula
     const calculateScore = ()=>{
+
         let min_score = Number.MAX_SAFE_INTEGER;
+
+        //this array will consit of all houses with their score and distance to nearest services
         let housesScore = [];
+
         for(let h_ind=0; h_ind<houses.length; h_ind++){
+
+            //map to store unique values
             let s_map = new Map();
+
             for(let s_ind=0; s_ind<servicesList.length; s_ind++){
+
+                //distance using manhattan distance formula
                 const rowDist = Math.abs(houses[h_ind].row - servicesList[s_ind].row);
                 const colDist = Math.abs(houses[h_ind].col - servicesList[s_ind].col);
                 const currDist = rowDist + colDist;
+
                 servicesList[s_ind].services.forEach((ele)=>{
                     const {name, isPresent} = ele;
                     if(isPresent && s_map.has(name)){
@@ -48,17 +59,24 @@ const PlotProvider = ({ children }) => {
                     }
                 })
             }
-            console.log(s_map);
+            // console.log(s_map);
+            //calculating scroe using map which is just created and stores nearest service available for current house
             let score = 0;
             for (const [key, value] of s_map) {
                 score+=value;
             }
+
             housesScore = [...housesScore,{...houses[h_ind],score, nearByServices: s_map}];
+
+            //updating min_score
             min_score = Math.min(score, min_score);
-            console.log(houses[h_ind].houseNum, score);
+
+            // console.log(houses[h_ind].houseNum, score);
         }
-        console.log("h_scores", housesScore);
-        console.log("min_score", min_score);
+        // console.log("h_scores", housesScore);
+        // console.log("min_score", min_score);
+
+        //calling recommendationHouse function after all houses near by services distance has been caculated
         recommendHouse(min_score, housesScore);
     }
 
@@ -85,6 +103,7 @@ const PlotProvider = ({ children }) => {
         setPlot([...tempPlot]);
     }
 
+    //replaces plot with new dimensions
     useEffect(()=>{
         if(plotDimensions){
             let row = plotDimensions.height, col = plotDimensions.width;
