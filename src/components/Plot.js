@@ -15,7 +15,7 @@ const Plot = () => {
     }
 
     return (
-        <div className='max-w-full h-full overflow-scroll pb-36'>
+        <div className='max-w-full h-full overflow-scroll px-36 pb-36'>
             {/* <div className='m-2 p-2 text-sm'>
                 <button
                     className='mx-2 py-1 px-2 bg-red-400 rounded text-white'
